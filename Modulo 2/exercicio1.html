@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+
+        </head>
+        <body>
+            
+                <button class='botao'>Novo Quadrado</button>
+                <div id='app'>
+            </div>
+
+            <script>
+                var btnElement = document.querySelector('button.botao')
+                var squaresElement = document.querySelector('#app')
+                
+                btnElement.onclick = function (){
+                    var square = document.createElement('div');
+                    
+
+                    square.style.width='100px';
+                    square.style.height='100px';
+                    square.style.backgroundColor='red';
+
+                    
+                    squaresElement.appendChild(square);
+                }
+
+            
+            
+            </script>
+        </body>
+    </html>
