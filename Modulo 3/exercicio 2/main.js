@@ -2,26 +2,32 @@ const listElement = document.querySelector('#app ul');
 const inputElement = document.querySelector('#app input');
 const buttonElement = document.querySelector('#app button');
 
-const userGithub = [
-  
-];
 
-function renderUserGithub(){
+
+function renderUserGithub(repositories){
   listElement.innerHTML = '';
-  for (user of userGithub){
+  for (nameRepos of repositories){
     const userElement = document.createElement('li');
-    const userText = document.createTextNode(user);
+    const userRepos = document.createTextNode(nameRepos.name);
 
-    userElement.appendChild(userText);
+    userElement.appendChild(userRepos);
     listElement.appendChild(userElement);
   }
 }
-renderUserGithub();
+
+
 
 function addUser(){
   const userText = inputElement.value;
-  userGithub.push(userText);
+  axios.get(`https://api.github.com/users/${userText}/repos`)
+  .then(function(response){
+    renderUserGithub(response.data);
+  })
+  .catch(function(error){
+    console.log(error);
+  })
   inputElement.value = '';
-  renderUserGithub();
+  
 }
 buttonElement.onclick = addUser;
+
